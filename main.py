@@ -13,12 +13,8 @@ TOKEN = APP_Settings.DISCORD_TOKEN
 # Initialize Bot and Denote The Command Prefix
 client = discord.Client(intents=discord.Intents.default())
 
-@client.loop(seconds=10)
-async def test2():
-  channel = client.get_channel(1051844419105607781)
-  await channel.send('test')
-  print('test')
-
+channel = client.get_channel(1051844419105607781)
+await channel.send('test')
 
 
 
