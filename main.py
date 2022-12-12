@@ -69,7 +69,8 @@ def Handle_RAW_Topic():
 			if Kafka_Message.Device.IoT.GSM.Module != None:
 				Kafka_Producer.send("Device.IoT_Module", value=Kafka_Message.Device.IoT.GSM.Module.dict(), headers=Kafka_Parser_Headers)
 	
-			Kafka_Producer.send("Device.Module", value=Kafka_Message.Device.Info(), headers=Kafka_Parser_Headers)
+			if Kafka_Message.Device.Info != None:
+				Kafka_Producer.send("Device.Module", value=Kafka_Message.Device.Info.dict(), headers=Kafka_Parser_Headers)
 
 
 			# Send Parsed Message to Queue
