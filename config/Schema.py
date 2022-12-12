@@ -53,29 +53,29 @@ class IoT_Data_Pack_Power(BaseModel):
 	# Device Battery
 	Battery: IoT_Data_Pack_Battery
 
+# Define IoT Module
+class IoT_Data_Pack_IoT_Module(BaseModel):
+	
+	# GSM Module Firmware
+	Firmware: Optional[str] = None
+
+	# Module IMEI Number
+	IMEI: Optional[str] = None
+
+	# Module Manufacturer
+	Manufacturer: Optional[int] = 1
+
+	# Module Model
+	Model: Optional[int] = 1
+
+	# Module Serial Number
+	Serial: Optional[str] = None
+
 # Define IoT
 class IoT_Data_Pack_IoT(BaseModel):
 
 	# Define GSM
 	class IoT_Data_Pack_GSM(BaseModel):
-
-		# Define IoT Module
-		class IoT_Data_Pack_IoT_Module(BaseModel):
-			
-			# GSM Module Firmware
-			Firmware: Optional[str] = None
-
-			# Module IMEI Number
-			IMEI: Optional[str] = None
-
-			# Module Manufacturer
-			Manufacturer: Optional[int] = 1
-
-			# Module Model
-			Model: Optional[int] = 1
-
-			# Module Serial Number
-			Serial: Optional[str] = None
 		
 		# Device IoT Module
 		Module: Optional[IoT_Data_Pack_IoT_Module]
