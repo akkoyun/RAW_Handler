@@ -75,7 +75,7 @@ def Handle_RAW_Topic():
 			if Kafka_Message.Device.Info != None:
 				Kafka_Producer.send("Device.Module", value=Kafka_Message.Device.Info.dict(), headers=Kafka_Parser_Headers)
 
-			Kafka_Producer.send("RAW.Discord", value=Kafka_Message, headers=Kafka_Parser_Headers)
+			Kafka_Producer.send("RAW.Discord", value=Kafka_Message.dict(), headers=Kafka_Parser_Headers)
 
 
 			# Send Parsed Message to Queue
