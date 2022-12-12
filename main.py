@@ -31,6 +31,9 @@ def Handle_RAW_Topic():
 			# Print LOG
 			log_functions.Log_Kafka_Header(Command, Device_ID, Device_IP, Device_Time, Message.topic, Message.partition, Message.offset)
 
+			# Send Parsed Message to Queue
+			Kafka_Producer.send("RAW.Discord", value=str(Kafka_Message), headers=Kafka_Parser_Headers)
+
 			# Create Add Record Command
 			New_Buffer_Post = Models.Incoming_Buffer(
 				Buffer_Device_ID = Device_ID, 
@@ -63,8 +66,6 @@ def Handle_RAW_Topic():
 
 
 			# Send Parsed Message to Queue
-			Kafka_Producer.send("RAW.Discord", value=Message.value.decode(), headers=Kafka_Parser_Headers)
-
 			if Kafka_Message.Device.Info.Hardware != None and Kafka_Message.Device.Info.Firmware != None:
 				Kafka_Producer.send("Device.Version", value=Kafka_Message.Device.Info.dict(exclude={'ID', 'Temperature', 'Humidity'}), headers=Kafka_Parser_Headers)
 
