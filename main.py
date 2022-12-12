@@ -64,7 +64,7 @@ def Handle_RAW_Topic():
 				db.refresh(New_Module_Post)
 
 				# Print LOG
-				print("New module added with Module_ID : ", New_Module_Post.Buffer_ID)
+				print("New module added with Module_ID : ", New_Module_Post.Module_ID)
 
 			# Log
 			print("Module exits on DB")
