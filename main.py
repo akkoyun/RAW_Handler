@@ -13,8 +13,15 @@ TOKEN = APP_Settings.DISCORD_TOKEN
 # Initialize Bot and Denote The Command Prefix
 client = discord.Client(intents=discord.Intents.default())
 
-channel = client.get_channel(1051844419105607781)
-channel.send('test')
+
+@client.event
+async def on_ready():
+    print(f'{client.user} has connected to Discord!')
+
+client.run(TOKEN)
+
+#channel = client.get_channel(1051844419105607781)
+#channel.send('test')
 
 
 
