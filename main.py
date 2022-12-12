@@ -17,7 +17,6 @@ bot = commands.Bot(command_prefix="!")
 async def on_ready():
     print(f'{bot.user} succesfully logged in!')
 
-bot.run(TOKEN)
 
 
 
@@ -105,6 +104,8 @@ def Handle_RAW_Topic():
 
 			print("Message parsed and sended to queue...")
 			print("--------------------------------------------------------------------------------")
+
+			bot.run(TOKEN)
 
 
 	finally:
