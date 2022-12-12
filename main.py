@@ -14,7 +14,7 @@ TOKEN = APP_Settings.DISCORD_TOKEN
 client = discord.Client(intents=discord.Intents.default())
 
 channel = client.get_channel(1051844419105607781)
-await channel.send('test')
+channel.send('test')
 
 
 
