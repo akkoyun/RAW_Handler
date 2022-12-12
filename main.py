@@ -65,7 +65,10 @@ def Handle_RAW_Topic():
 			# Send Parsed Message to Queue
 			Kafka_Producer.send("Device.Version", value=Kafka_Message.Device.Info.dict(exclude={'ID', 'Temperature', 'Humidity'}), headers=Kafka_Parser_Headers)
 			Kafka_Producer.send("Device.IMU", value=Kafka_Message.Device.Info.dict(exclude={'ID', 'Hardware', 'Firmware'}), headers=Kafka_Parser_Headers)
-			Kafka_Producer.send("Device.IoT_Module", value=Kafka_Message.Device.IoT.GSM.Module.dict(), headers=Kafka_Parser_Headers)
+	
+			if Kafka_Message.Device.IoT.GSM.Module != None:
+				Kafka_Producer.send("Device.IoT_Module", value=Kafka_Message.Device.IoT.GSM.Module.dict(), headers=Kafka_Parser_Headers)
+	
 			Kafka_Producer.send("Device.Module", value=Kafka_Message.Device.Info(), headers=Kafka_Parser_Headers)
 
 
