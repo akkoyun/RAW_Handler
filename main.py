@@ -1,12 +1,13 @@
 # Import Libraries
 from config import Database, Schema, Models, log_functions
+from config.Config import APP_Settings
 from kafka import KafkaConsumer, KafkaProducer
 from json import dumps
 import json
 
 # Discord Libraries
 from discord.ext import commands
-TOKEN = "MTA1MTgzODE3NjY4NTIxMTY5OQ.GOGpYh.NiSolwdhjfzq12pBxqjB4d-QoKH58jH9T1DNCo"
+TOKEN = APP_Settings.DISCORD_TOKEN
 
 # Initialize Bot and Denote The Command Prefix
 bot = commands.Bot(command_prefix="!")

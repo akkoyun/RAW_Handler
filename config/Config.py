@@ -10,6 +10,8 @@ class Settings(BaseSettings):
 	POSTOFFICE_DB_NAME: str
 	POSTOFFICE_DB_USERNAME: str
 
+	DISCORD_TOKEN: str
+
 	class Config:
 		env_file = "config/.env"
 
