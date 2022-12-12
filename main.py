@@ -46,6 +46,28 @@ def Handle_RAW_Topic():
 
 			# Print LOG
 			print("Message recorded to Buffer DB with Buffer_ID : ", New_Buffer_Post.Buffer_ID)
+
+			# Database Query
+			IoT_Module_Query = db.query(Models.Module.Device_ID.like(Device_ID)).first()
+
+			# Module Table Update
+			if IoT_Module_Query == None:
+
+				# Create Add Record Command
+				New_Module_Post = Models.Module(
+					Device_ID = Device_ID, 
+					Device_Development = True, 
+					Module_Name = "B100xx")
+	
+				db.add(New_Module_Post)
+				db.commit()
+				db.refresh(New_Module_Post)
+
+				# Print LOG
+				print("New module added with Module_ID : ", New_Module_Post.Buffer_ID)
+
+			# Log
+			print("Module exits on DB")
 			print("................................................................................")
 
 			# Close Database
