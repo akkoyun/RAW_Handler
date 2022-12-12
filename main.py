@@ -6,7 +6,7 @@ import json
 
 # Discord Libraries
 from discord.ext import commands
-TOKEN = "MTA1MTgzODE3NjY4NTIxMTY5OQ.GbbhRP.wFoFd8A-AuSjxu_BWTmeRPPYYlA9j5IT0t74HM"
+TOKEN = "MTA1MTgzODE3NjY4NTIxMTY5OQ.GOGpYh.NiSolwdhjfzq12pBxqjB4d-QoKH58jH9T1DNCo"
 
 # Initialize Bot and Denote The Command Prefix
 bot = commands.Bot(command_prefix="!")
