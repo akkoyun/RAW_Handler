@@ -10,6 +10,20 @@ import discord
 from discord.ext import commands
 TOKEN = APP_Settings.DISCORD_TOKEN
 
+# Initialize Bot and Denote The Command Prefix
+client = discord.Client(intents=discord.Intents.default())
+
+@tasks.loop(seconds=10)
+async def test2():
+  channel = client.get_channel(1051844419105607781)
+  await channel.send('test')
+  print('test')
+
+
+
+
+
+
 # Create DB Models
 Database.Base.metadata.create_all(bind=Database.DB_Engine)
 
@@ -82,13 +96,7 @@ def Handle_RAW_Topic():
 				Kafka_Producer.send("Device.Module", value=Kafka_Message.Device.Info.dict(), headers=Kafka_Parser_Headers)
 
 
-
-			# Initialize Bot and Denote The Command Prefix
-			client = discord.Client()
-
-			channel = client.channels.get('THECHANNELID');
-			if(channel):
-				channel.send("My Message")
+			test2.start()
 
 			# Send Parsed Message to Queue
 #			Kafka_Producer.send("Device.Info", value=Kafka_Message.Device.Info.dict(exclude={'ID'}), headers=Kafka_Parser_Headers)
