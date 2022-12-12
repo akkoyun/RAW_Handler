@@ -27,5 +27,5 @@ class Module(Base):
 	Module_ID = Column(Integer, primary_key=True, nullable=False)
 	Module_Create_Time = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
 	Device_ID = Column(String, nullable=True)
-	Device_Development = Column(Boolean, server_default=True)
+	Device_Development = Column(Boolean, default=False)
 	Module_Name = Column(String, nullable=True)
