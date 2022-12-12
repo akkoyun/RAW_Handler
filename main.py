@@ -64,13 +64,14 @@ def Handle_RAW_Topic():
 
 			# Send Parsed Message to Queue
 			Kafka_Producer.send("Device.Version", value=Kafka_Message.Device.Info.dict(exclude={'ID', 'Temperature', 'Humidity'}), headers=Kafka_Parser_Headers)
+			Kafka_Producer.send("Device.IMU", value=Kafka_Message.Device.Info.dict(exclude={'ID', 'Hardware', 'Firmware'}), headers=Kafka_Parser_Headers)
 
 
 			# Send Parsed Message to Queue
-			Kafka_Producer.send("Device.Info", value=Kafka_Message.Device.Info.dict(exclude={'ID'}), headers=Kafka_Parser_Headers)
-			Kafka_Producer.send("Device.Power", value=Kafka_Message.Device.Power.dict(), headers=Kafka_Parser_Headers)
-			Kafka_Producer.send("Device.IoT", value=Kafka_Message.Device.IoT.dict(), headers=Kafka_Parser_Headers)
-			Kafka_Producer.send("Device.Payload", value=Kafka_Message.Payload.dict(exclude={'TimeStamp'}), headers=Kafka_Parser_Headers)
+#			Kafka_Producer.send("Device.Info", value=Kafka_Message.Device.Info.dict(exclude={'ID'}), headers=Kafka_Parser_Headers)
+#			Kafka_Producer.send("Device.Power", value=Kafka_Message.Device.Power.dict(), headers=Kafka_Parser_Headers)
+#			Kafka_Producer.send("Device.IoT", value=Kafka_Message.Device.IoT.dict(), headers=Kafka_Parser_Headers)
+#			Kafka_Producer.send("Device.Payload", value=Kafka_Message.Payload.dict(exclude={'TimeStamp'}), headers=Kafka_Parser_Headers)
 
 			print("Message parsed and sended to queue...")
 			print("--------------------------------------------------------------------------------")
