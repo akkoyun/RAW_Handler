@@ -10,9 +10,6 @@ import discord
 from discord.ext import commands
 TOKEN = APP_Settings.DISCORD_TOKEN
 
-# Initialize Bot and Denote The Command Prefix
-client = discord.Client()
-
 # Create DB Models
 Database.Base.metadata.create_all(bind=Database.DB_Engine)
 
@@ -85,7 +82,11 @@ def Handle_RAW_Topic():
 				Kafka_Producer.send("Device.Module", value=Kafka_Message.Device.Info.dict(), headers=Kafka_Parser_Headers)
 
 
-			let channel = client.channels.get('THECHANNELID');
+
+			# Initialize Bot and Denote The Command Prefix
+			client = discord.Client()
+
+			channel = client.channels.get('THECHANNELID');
 			if(channel) {
 				channel.send("My Message");
 			}
