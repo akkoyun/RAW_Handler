@@ -44,15 +44,14 @@ def Handle_RAW_Topic():
 			db.commit()
 			db.refresh(New_Buffer_Post)
 
-			# Close Database
-			db.close()
-
 			# Print LOG
 			print("Message recorded to Buffer DB with Buffer_ID : ", New_Buffer_Post.Buffer_ID)
 
 			# Database Query
 			IoT_Module_Query = db.query(Models.Module.Device_ID.like(Device_ID)).first()
 
+			print(IoT_Module_Query)
+	
 			# Module Table Update
 			if IoT_Module_Query == None:
 
