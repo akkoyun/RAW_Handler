@@ -66,8 +66,11 @@ def Handle_RAW_Topic():
 				# Print LOG
 				print("New module added with Module_ID : ", New_Module_Post.Module_ID)
 
+			else:
+				# Log
+				print("Module exits on DB")
+
 			# Log
-			print("Module exits on DB")
 			print("................................................................................")
 
 			# Close Database
