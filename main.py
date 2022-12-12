@@ -19,6 +19,9 @@ async def test2():
   await channel.send('test')
   print('test')
 
+@client.event
+async def on_ready():
+   test2.start()
 
 
 
