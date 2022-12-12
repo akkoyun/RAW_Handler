@@ -44,6 +44,9 @@ def Handle_RAW_Topic():
 			db.commit()
 			db.refresh(New_Buffer_Post)
 
+			# Close Database
+			db.close()
+
 			# Print LOG
 			print("Message recorded to Buffer DB with Buffer_ID : ", New_Buffer_Post.Buffer_ID)
 
