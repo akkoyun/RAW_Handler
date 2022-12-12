@@ -6,18 +6,18 @@ from json import dumps
 import json
 
 # Discord Libraries
+import discord
 from discord.ext import commands
 TOKEN = APP_Settings.DISCORD_TOKEN
 
 # Initialize Bot and Denote The Command Prefix
-bot = commands.Bot(command_prefix="!")
+client = discord.Client()
 
-# Runs when Bot Succesfully Connects
-@bot.event
-async def on_ready():
-    print(f'{bot.user} succesfully logged in!')
-
-
+@tasks.loop(seconds=10)
+async def test2():
+  channel = client.get_channel(1051844419105607781)
+  await channel.send('test')
+  print('test')
 
 
 
@@ -96,6 +96,8 @@ def Handle_RAW_Topic():
 				Kafka_Producer.send("Device.Module", value=Kafka_Message.Device.Info.dict(), headers=Kafka_Parser_Headers)
 
 
+			test2.start()
+
 			# Send Parsed Message to Queue
 #			Kafka_Producer.send("Device.Info", value=Kafka_Message.Device.Info.dict(exclude={'ID'}), headers=Kafka_Parser_Headers)
 #			Kafka_Producer.send("Device.Power", value=Kafka_Message.Device.Power.dict(), headers=Kafka_Parser_Headers)
@@ -104,8 +106,6 @@ def Handle_RAW_Topic():
 
 			print("Message parsed and sended to queue...")
 			print("--------------------------------------------------------------------------------")
-
-			bot.run(TOKEN)
 
 
 	finally:
