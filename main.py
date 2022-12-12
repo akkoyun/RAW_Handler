@@ -87,9 +87,8 @@ def Handle_RAW_Topic():
 			client = discord.Client()
 
 			channel = client.channels.get('THECHANNELID');
-			if(channel) {
-				channel.send("My Message");
-			}
+			if(channel):
+				channel.send("My Message")
 
 			# Send Parsed Message to Queue
 #			Kafka_Producer.send("Device.Info", value=Kafka_Message.Device.Info.dict(exclude={'ID'}), headers=Kafka_Parser_Headers)
