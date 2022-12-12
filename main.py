@@ -4,6 +4,26 @@ from kafka import KafkaConsumer, KafkaProducer
 from json import dumps
 import json
 
+# Discord Libraries
+from discord.ext import commands
+TOKEN = "MTA1MTgzODE3NjY4NTIxMTY5OQ.GbbhRP.wFoFd8A-AuSjxu_BWTmeRPPYYlA9j5IT0t74HM"
+
+# Initialize Bot and Denote The Command Prefix
+bot = commands.Bot(command_prefix="!")
+
+# Runs when Bot Succesfully Connects
+@bot.event
+async def on_ready():
+    print(f'{bot.user} succesfully logged in!')
+
+bot.run(TOKEN)
+
+
+
+
+
+
+
 # Create DB Models
 Database.Base.metadata.create_all(bind=Database.DB_Engine)
 
