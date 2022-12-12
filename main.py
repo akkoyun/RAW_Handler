@@ -61,6 +61,11 @@ def Handle_RAW_Topic():
 				('Device_Time', bytes(Device_Time, 'utf-8')), 
 				('IP', bytes(Device_IP, 'utf-8'))]
 
+
+			# Send Parsed Message to Queue
+			Kafka_Producer.send("Device.Version", value=Kafka_Message.Device.Info.dict(exclude={'ID', 'Temperature', 'Humidity'}), headers=Kafka_Parser_Headers)
+
+
 			# Send Parsed Message to Queue
 			Kafka_Producer.send("Device.Info", value=Kafka_Message.Device.Info.dict(exclude={'ID'}), headers=Kafka_Parser_Headers)
 			Kafka_Producer.send("Device.Power", value=Kafka_Message.Device.Power.dict(), headers=Kafka_Parser_Headers)
