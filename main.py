@@ -53,7 +53,7 @@ def Handle_RAW_Topic():
 			print(IoT_Module_Query)
 	
 			# Module Table Update
-			if IoT_Module_Query == None:
+			if IoT_Module_Query == False:
 
 				# Create Add Record Command
 				New_Module_Post = Models.Module(
