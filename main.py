@@ -27,6 +27,7 @@ def Handle_RAW_Topic():
 			Device_ID = Message.headers[1][1].decode('ASCII')
 			Device_Time = Message.headers[2][1].decode('ASCII')
 			Device_IP = Message.headers[3][1].decode('ASCII')
+			Size = Message.headers[4][1].decode('ASCII')
 
 			# Print LOG
 			log_functions.Log_Kafka_Header(Command, Device_ID, Device_IP, Device_Time, Message.topic, Message.partition, Message.offset)
@@ -59,7 +60,8 @@ def Handle_RAW_Topic():
 				('Command', bytes(Command, 'utf-8')), 
 				('ID', bytes(Device_ID, 'utf-8')), 
 				('Device_Time', bytes(Device_Time, 'utf-8')), 
-				('IP', bytes(Device_IP, 'utf-8'))]
+				('IP', bytes(Device_IP, 'utf-8')),
+				('Size', bytes(Size, 'utf-8'))]
 
 
 			# Send Parsed Message to Queue
