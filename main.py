@@ -80,8 +80,8 @@ def RAW_Handler():
 				('Device_ID', bytes(Headers.Device_ID, 'utf-8')), 
 				('Device_Time', bytes(Headers.Device_Time, 'utf-8')), 
 				('Device_IP', bytes(Headers.Device_IP, 'utf-8')),
-				('Size', bytes(Headers.Size, 'utf-8')),
-				('Buffer_ID', bytes(New_Buffer.Buffer_ID, 'utf-8'))]
+				('Size', Headers.Size),
+				('Buffer_ID', New_Buffer.Buffer_ID)]
 
 			# Send Message to Queue
 			Kafka_Producer.send("Device", value=Kafka_Message.Device.dict(), headers=Kafka_Parser_Headers)
