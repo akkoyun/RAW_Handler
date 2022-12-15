@@ -16,3 +16,5 @@ class Incoming_Buffer(Base):
 	Buffer_Command = Column(String, nullable=True)
 	Buffer_Client_IP = Column(String, nullable=True)
 	Buffer_Data = Column(String, nullable=True)
+	Parse_Device = Column(Boolean, default=False)
+	Parse_Payload = Column(Boolean, default=False)
