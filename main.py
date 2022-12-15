@@ -80,7 +80,7 @@ def RAW_Handler():
 				('Device_ID', bytes(Headers.Device_ID, 'utf-8')), 
 				('Device_Time', bytes(Headers.Device_Time, 'utf-8')), 
 				('Device_IP', bytes(Headers.Device_IP, 'utf-8')),
-				('Size', Headers.Size),
+				('Size', bytes(Headers.Size, 'utf-8')),
 				('Buffer_ID', New_Buffer.Buffer_ID)]
 
 			# Send Message to Queue
