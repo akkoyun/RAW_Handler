@@ -30,12 +30,8 @@ def RAW_Handler():
 		for Message in Kafka_Consumer:
 	
 			# handle Message.
-			try:
-				Kafka_Message = Schema.IoT_Data_Pack_Model(**json.loads(Message.value.decode()))
-			finally:
-				print("Error Accured !!")
-
-
+			Kafka_Message = Schema.IoT_Data_Pack_Model(**json.loads(Message.value.decode()))
+			
 			class Headers:
 				Command = Message.headers[0][1].decode('ASCII')
 				Device_ID = Message.headers[1][1].decode('ASCII')
