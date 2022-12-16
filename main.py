@@ -40,13 +40,13 @@ def RAW_Handler():
 				Size = Message.headers[4][1].decode('ASCII')
 
 			# Print LOG
-			Service_Logger.debug("--------------------------------------------------------------------------------")
-			Service_Logger.debug(f"Command     : '{Headers.Command}'")
-			Service_Logger.debug(f"Device ID   : '{Headers.Device_ID}'")
-			Service_Logger.debug(f"Client IP   : '{Headers.Device_IP}'")
-			Service_Logger.debug(f"Device Time : '{Headers.Device_Time}'")
-			Service_Logger.debug(f"Packet Size : '{Headers.Size}'")
-			Service_Logger.debug("--------------------------------------------------------------------------------")
+#			Service_Logger.debug("--------------------------------------------------------------------------------")
+#			Service_Logger.debug(f"Command     : '{Headers.Command}'")
+#			Service_Logger.debug(f"Device ID   : '{Headers.Device_ID}'")
+#			Service_Logger.debug(f"Client IP   : '{Headers.Device_IP}'")
+#			Service_Logger.debug(f"Device Time : '{Headers.Device_Time}'")
+#			Service_Logger.debug(f"Packet Size : '{Headers.Size}'")
+#			Service_Logger.debug("--------------------------------------------------------------------------------")
 
 			# Create Add Record Command
 			New_Buffer = Models.Incoming_Buffer(
@@ -64,7 +64,7 @@ def RAW_Handler():
 			DB_Buffer.refresh(New_Buffer)
 
 			# Print Log
-			Service_Logger.debug(f"Message recorded to buffer database ['{New_Buffer.Buffer_ID}']")
+#			Service_Logger.debug(f"Message recorded to buffer database ['{New_Buffer.Buffer_ID}']")
 
 			# Close Database
 			DB_Buffer.close()
@@ -89,7 +89,8 @@ def RAW_Handler():
 #			Kafka_Producer.send("RAW.Discord", value=Kafka_Message.dict(), headers=Kafka_Parser_Headers)
 
 			# Print Log
-			Service_Logger.debug(f"Message sended to parsers...")
+			Service_Logger.debug(f"RAW Data processed and sended to parsers. ['{Headers.Device_ID}'] - ['{Headers.Command}'] at ['{Headers.Device_Time}']")
+#			Service_Logger.debug(f"Message sended to parsers...")
 
 	finally:
 		
