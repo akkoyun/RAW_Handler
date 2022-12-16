@@ -28,9 +28,13 @@ def RAW_Handler():
 	try:
 
 		for Message in Kafka_Consumer:
-
+	
 			# handle Message.
-			Kafka_Message = Schema.IoT_Data_Pack_Model(**json.loads(Message.value.decode()))
+			try:
+				Kafka_Message = Schema.IoT_Data_Pack_Model(**json.loads(Message.value.decode()))
+			finally:
+				print("Error Accured !!")
+
 
 			class Headers:
 				Command = Message.headers[0][1].decode('ASCII')
