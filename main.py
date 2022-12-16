@@ -84,9 +84,9 @@ def RAW_Handler():
 				('Buffer_ID', bytes(str(New_Buffer.Buffer_ID), 'utf-8'))]
 
 			# Send Message to Queue
-			Kafka_Producer.send("Device", value=Kafka_Message.Device.dict(), partition=5, headers=Kafka_Parser_Headers)
-			Kafka_Producer.send("Payload", value=Kafka_Message.Device.dict(), partition=5, headers=Kafka_Parser_Headers)
-			Kafka_Producer.send("RAW.Discord", value=Kafka_Message.dict(), partition=5, headers=Kafka_Parser_Headers)
+			Kafka_Producer.send("Device", value=Kafka_Message.Device.dict(), headers=Kafka_Parser_Headers)
+			Kafka_Producer.send("Payload", value=Kafka_Message.Device.dict(), headers=Kafka_Parser_Headers)
+			Kafka_Producer.send("RAW.Discord", value=Kafka_Message.dict(), headers=Kafka_Parser_Headers)
 
 			# Print Log
 			Service_Logger.debug(f"Message sended to parsers...")
