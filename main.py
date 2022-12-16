@@ -86,7 +86,7 @@ def RAW_Handler():
 			# Send Message to Queue
 			Kafka_Producer.send("Device", value=Kafka_Message.Device.dict(), headers=Kafka_Parser_Headers)
 			Kafka_Producer.send("Payload", value=Kafka_Message.Payload.dict(), headers=Kafka_Parser_Headers)
-			Kafka_Producer.send("RAW.Discord", value=Kafka_Message.dict(), headers=Kafka_Parser_Headers)
+#			Kafka_Producer.send("RAW.Discord", value=Kafka_Message.dict(), headers=Kafka_Parser_Headers)
 
 			# Print Log
 			Service_Logger.debug(f"Message sended to parsers...")
