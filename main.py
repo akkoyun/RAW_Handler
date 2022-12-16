@@ -39,15 +39,6 @@ def RAW_Handler():
 				Device_IP = Message.headers[3][1].decode('ASCII')
 				Size = Message.headers[4][1].decode('ASCII')
 
-			# Print LOG
-#			Service_Logger.debug("--------------------------------------------------------------------------------")
-#			Service_Logger.debug(f"Command     : '{Headers.Command}'")
-#			Service_Logger.debug(f"Device ID   : '{Headers.Device_ID}'")
-#			Service_Logger.debug(f"Client IP   : '{Headers.Device_IP}'")
-#			Service_Logger.debug(f"Device Time : '{Headers.Device_Time}'")
-#			Service_Logger.debug(f"Packet Size : '{Headers.Size}'")
-#			Service_Logger.debug("--------------------------------------------------------------------------------")
-
 			# Create Add Record Command
 			New_Buffer = Models.Incoming_Buffer(
 				Buffer_Device_ID = Headers.Device_ID, 
@@ -62,9 +53,6 @@ def RAW_Handler():
 			DB_Buffer.add(New_Buffer)
 			DB_Buffer.commit()
 			DB_Buffer.refresh(New_Buffer)
-
-			# Print Log
-#			Service_Logger.debug(f"Message recorded to buffer database ['{New_Buffer.Buffer_ID}']")
 
 			# Close Database
 			DB_Buffer.close()
@@ -83,14 +71,30 @@ def RAW_Handler():
 				('Size', bytes(Headers.Size, 'utf-8')),
 				('Buffer_ID', bytes(str(New_Buffer.Buffer_ID), 'utf-8'))]
 
+
+
+
+
 			# Send Message to Queue
 			Kafka_Producer.send("Device", value=Kafka_Message.Device.dict(), headers=Kafka_Parser_Headers)
-			Kafka_Producer.send("Payload", value=Kafka_Message.Payload.dict(), headers=Kafka_Parser_Headers)
+
+			# Send PowerStat Payload to Queue
+			if Kafka_Message.Payload.PowerStat is not None:
+				Kafka_Producer.send("PowerStat.Payload", value=Kafka_Message.Payload.PowerStat.dict(), headers=Kafka_Parser_Headers)
+
+			# Send WeatherStat Payload to Queue
+			if Kafka_Message.Payload.WeatherStat is not None:
+				Kafka_Producer.send("WeatherStat.Payload", value=Kafka_Message.Payload.WeatherStat.dict(), headers=Kafka_Parser_Headers)
+
+
+
+
+
+
 #			Kafka_Producer.send("RAW.Discord", value=Kafka_Message.dict(), headers=Kafka_Parser_Headers)
 
 			# Print Log
 			Service_Logger.debug(f"RAW Data processed and sended to parsers. ['{Headers.Device_ID}'] - ['{Headers.Command}'] at ['{Headers.Device_Time}']")
-#			Service_Logger.debug(f"Message sended to parsers...")
 
 	finally:
 		
